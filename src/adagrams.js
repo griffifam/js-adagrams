@@ -119,17 +119,15 @@ const Adagrams = {
     let highest_key = "";
 
     all_plays.forEach(function( word ) {
-      for ( let key in scoreHash ) {
-        this.key = scoreChart[key];
-      }
-      for ( let key in scoreHash ) {
-        if (scoreHash[key] > highest_value) {
-          highest_value = scoreHash[key];
-          highest_key = key;
-        }
-      }
-
+      scoreHash[word] = Adagrams.scoreWord( word );
     });
+
+    for( let key in scoreHash ) {
+      if (scoreHash[key] > highest_value) {
+        highest_value = scoreHash[key];
+        highest_key = key;
+      }
+    }
     return { word: `${highest_key}`, score: Number(`${highest_value}`) };
   }
 
